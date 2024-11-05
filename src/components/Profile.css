@@ -1,0 +1,103 @@
+/* Profile.css */
+body {
+  margin-right: 30px;
+}
+
+.profile-page {
+  padding: 2rem;
+  background: #e0f7fa; /* Light blue background */
+  font-family: Arial, sans-serif;
+  min-height: 100vh; /* Ensure full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-page h1 {
+  color: #00796b; /* Teal color for heading */
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.profile-info {
+  background: #ffffff; /* White background for profile info */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+  max-width: 600px;
+  width: 100%;
+  position: relative; /* Position relative for absolute positioning of image */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align the contents */
+}
+
+.profile-image-upload {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.profile-image-upload label {
+  cursor: pointer;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%; /* Circular profile image */
+  object-fit: cover; /* Ensure image covers the circle */
+  border: 3px solid #00796b; /* Teal border around the image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.profile-details {
+  width: 100%;
+  text-align: left; /* Left align profile details */
+  margin-bottom: 1rem;
+}
+
+.profile-info p {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5; /* Improve readability */
+}
+
+.profile-info strong {
+  color: #00796b; /* Matching teal color */
+}
+
+.profile-buttons {
+  display: flex;
+  justify-content: center; /* Center buttons */
+  margin-top: 20px;
+  gap: 15px; /* Add space between buttons */
+}
+
+.edit-button {
+  padding: 10px 20px;
+  background-color: #1e7121;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #004d40; /* Darker teal for hover effect */
+}
+
+.back-button {
+  padding: 10px 20px;
+  background-color: #e74c3c; /* Red color for the back button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+  background-color: #c0392b; /* Darker red on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}

@@ -1,0 +1,77 @@
+/* SplashScreen.css */
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Prevent scrollbars */
+}
+
+.splash-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  background: url("https://i.pinimg.com/736x/a6/36/cf/a636cfed02d42bc5439d1648c033b3a0.jpg")
+    no-repeat center center;
+  background-size: cover; /* Ensures background covers entire screen */
+  color: white;
+  position: relative;
+}
+
+.splash-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  z-index: 1; /* Ensure overlay is above the background */
+}
+
+.splash-content {
+  text-align: center;
+  z-index: 2; /* Ensure content is above the overlay */
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeIn 1s forwards; /* Animation for fade-in effect */
+}
+
+.content-box {
+  background: rgba(255, 255, 255, 0.1); /* Light background for the box */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding inside the box */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  margin: 20px; /* Margin around the box */
+  width: 80%; /* Responsive width */
+  max-width: 600px; /* Maximum width for larger screens */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.countdown {
+  font-size: 2rem;
+  font-weight: bold;
+  animation: pulse 1.5s infinite; /* Pulsing effect */
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}

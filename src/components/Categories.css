@@ -1,0 +1,137 @@
+/* Base styling for the categories page */
+.categories-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #add8e6; /* Solid light blue background */
+  padding: 20px;
+}
+
+.categories-page h2 {
+  font-size: 2.5rem;
+  color: #496cc5;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Category container for flexbox layout */
+.category-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Reduced space between boxes */
+  justify-content: center;
+  align-items: center;
+}
+
+.category-box {
+  background: rgba(250, 253, 253, 0.7); /* Semi-transparent light color */
+  backdrop-filter: blur(
+    15px
+  ); /* Increase blur effect for a stronger glass effect */
+  padding: 20px; /* Slightly increased padding for better spacing */
+  border-radius: 20px; /* Slightly larger border radius for softer edges */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Deeper shadow for more depth */
+  text-align: center;
+  width: 250px; /* Fixed width */
+  height: 250px; /* Fixed height */
+  display: flex; /* Flexbox for center alignment */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for animations */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Animation effect on hover */
+.category-box:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); /* More pronounced shadow on hover */
+}
+
+/* Optional: Active state for the clicked box */
+.category-box.active {
+  transform: scale(1.1); /* Further enlarge when clicked */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Enhance shadow when active */
+}
+input[type="text"] {
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 300px; /* Adjust the width as needed */
+  transition: border 0.3s; /* Add a transition effect */
+}
+
+input[type="text"]:focus {
+  border: 1px solid #496cc5; /* Change border color on focus */
+  outline: none; /* Remove outline */
+}
+
+/* Styling for category images */
+.category-image {
+  width: 80px; /* Adjusted size for smaller image */
+  height: 80px; /* Adjusted size for smaller image */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image fits within the circle */
+}
+
+/* Voice button styling */
+.voice-button {
+  margin-top: 10px;
+  padding: 8px 16px; /* Adjusted padding for smaller button */
+  background-color: #3d7f44;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.voice-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Category description styling */
+.category-description {
+  margin-top: 10px;
+  color: #423e3e; /* Adjust color as needed */
+}
+
+/* Additional responsiveness */
+@media screen and (max-width: 768px) {
+  .categories-page h2 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .categories-page h2 {
+    font-size: 1.75rem;
+  }
+
+  .category-image {
+    width: 60px; /* Smaller size for mobile */
+    height: 60px; /* Smaller size for mobile */
+  }
+}
+/* Input field styling */
+.name-input {
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 300px; /* Adjust the width as needed */
+  transition: border 0.3s; /* Add a transition effect */
+  margin-right: 20px;
+}
+
+/* Focus effect on the input field */
+.name-input:focus {
+  border: 1px solid #496cc5; /* Change border color on focus */
+  outline: none; /* Remove outline */
+}

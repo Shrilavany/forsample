@@ -1,0 +1,3 @@
+[submodule "truenova"]
+	path = truenova
+	url = https://github.com/Shrilavany/truenova.git

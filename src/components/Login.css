@@ -1,38 +1,39 @@
 /* Keyframe animation for sliding in from the left */
 @keyframes slideIn {
-  from {
+  0% {
     transform: translateX(-100%); /* Start off-screen to the left */
     opacity: 0; /* Start transparent */
   }
-  to {
+  100% {
     transform: translateX(0); /* End in the original position */
     opacity: 1; /* Fully visible */
   }
 }
-/* Container for the login page with glassic effect */
+
+/* Login page styling */
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background: url("https://cdn.leonardo.ai/users/95626727-f1ba-4161-8268-b4f2a44d51f1/generations/ccba96ff-a4c2-4954-b02f-05d8a8e40d39/Leonardo_Phoenix_a_highly_detailed_and_realistic_scene_depicti_3.jpg")
-    no-repeat center center; /* Optional: Dark background image */
-  background-size: cover; /* Cover the entire container */
+    no-repeat center center;
+  background-size: cover;
   font-family: Arial, sans-serif;
   position: relative;
   padding: 2rem;
   box-sizing: border-box;
 }
 
-/* Box for the login form with glassic effect */
+/* Box for the login form with glassic effect and slide-in animation */
 .login-box {
   background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
-  backdrop-filter: blur(10px); /* Frosted glass effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border: 1px solid rgba(255, 255, 255, 0.5); /* Optional: border to enhance the effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 400px;
   width: 100%;
   text-align: center;
@@ -41,7 +42,10 @@
   justify-content: space-between;
   height: auto;
   margin: 0 auto;
+  animation: slideIn 1s ease-out; /* Apply the slide-in animation */
 }
+
+/* Other styles remain the same */
 
 /* Heading styling */
 .login-box h2 {
@@ -192,5 +196,28 @@
 }
 
 .modal-close-button:hover {
-  background: #b71c1c; /* Darker red on hover */
+  background: #b71c1c; /* Darker red on hover */
+}
+/* Style for the Explain Categories button in the top-right corner */
+.explain-categories-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #4ab6f4; /* Teal color matching the form */
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.explain-categories-button:hover {
+  background-color: #4ab6f4; /* Darker teal on hover */
+}
+
+/* Ensure the button doesn't overlap with other elements */
+.login-page {
+  padding-top: 60px; /* Adjust if needed to prevent overlap */
 }

@@ -1,0 +1,118 @@
+/* AboutUs.css */
+
+.aboutContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap; /* Ensures the layout adjusts on smaller screens */
+  background-color: #f8f9fa; /* Light background for better readability */
+  border-radius: 12px; /* Rounded corners for a soft, modern look */
+}
+
+.leftSection {
+  flex: 1;
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.gifImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adds shadow for depth */
+  transition: transform 0.3s ease-in-out;
+}
+
+.gifImage:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.rightSection {
+  flex: 2;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333; /* Darker color for the heading */
+}
+
+.introText {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  text-align: justify;
+  color: #555; /* Slightly lighter color for the text */
+}
+
+.subheading {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #007bff; /* Blue color for subheadings */
+}
+
+.productList {
+  list-style-type: none;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.productList li {
+  margin-bottom: 8px;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.productList li::before {
+  content: "✔"; /* Check mark before each product */
+  margin-right: 10px;
+  color: #28a745; /* Green color for checkmarks */
+}
+
+.text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.featuresContainer {
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .aboutContainer {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .leftSection {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .rightSection {
+    padding-left: 0;
+  }
+
+  .heading {
+    font-size: 30px;
+  }
+
+  .introText,
+  .text {
+    font-size: 16px;
+  }
+}

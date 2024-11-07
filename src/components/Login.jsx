@@ -1,62 +1,75 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css"; // Include the CSS for styling
+import "./Login.css";
 
 const Login = () => {
-  const [name, setName] = useState(""); // Changed from username to name
-  const [role, setRole] = useState(""); // State for role
+  const [name, setName] = useState("");
+  const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); // State for password
+  const [password, setPassword] = useState("");
   const [bloodGroup, setBloodGroup] = useState("");
   const [gender, setGender] = useState("");
   const [error, setError] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [signInError, setSignInError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    // Basic input validation
+    // Check if the email is already registered
+    if (localStorage.getItem("email") === email) {
+      setError("You are already signed up. Please go to the sign-in page.");
+      return;
+    }
+
+    // Check if all fields are filled
     if (!name || !role || !email || !password || !bloodGroup || !gender) {
       setError("All fields are required.");
       return;
     }
 
-    // Log the user data to the console (simulating registration)
-    const userData = {
-      name,
-      role,
-      email,
-      password,
-      bloodGroup,
-      gender,
-    };
-
-    console.log("User registered successfully:", userData);
-
     // Store user data in localStorage
     localStorage.setItem("name", name);
     localStorage.setItem("role", role);
     localStorage.setItem("email", email);
-    localStorage.setItem("password", password); // Note: Storing password in localStorage is not recommended
+    localStorage.setItem("password", password);
     localStorage.setItem("bloodGroup", bloodGroup);
     localStorage.setItem("gender", gender);
 
-    // Navigate to the homepage after successful registration
+    // Log stored data for debugging
+    console.log("Signup successful:");
+    console.log("Stored Name:", name);
+    console.log("Stored Role:", role);
+    console.log("Stored Email:", email);
+    console.log("Stored Password:", password);
+    console.log("Stored Blood Group:", bloodGroup);
+    console.log("Stored Gender:", gender);
+
+    // Navigate to the chat input page after successful registration
     navigate("/chat-input");
   };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
+    setSignInError(""); // Clear any previous error on modal open
   };
 
   const handleModalSubmit = () => {
-    // Navigate to home when modal submit is clicked
-    navigate("/chat-input");
+    // Check if name and email match the stored data
+    if (
+      localStorage.getItem("name") === name &&
+      localStorage.getItem("email") === email
+    ) {
+      console.log("Signin successful for:", name);
+      navigate("/chat-input");
+    } else {
+      setSignInError("Invalid credentials. Please check your name and email.");
+      console.log("Signin failed for:", name);
+    }
   };
 
-  // Function to navigate to the categories page
   const handleCategories = () => {
-    navigate("/categories"); // Adjust the route according to your setup
+    navigate("/categories");
   };
 
   return (
@@ -163,12 +176,10 @@ const Login = () => {
         </form>
       </div>
 
-      {/* Button for explaining categories */}
       <button className="explain-categories-button" onClick={handleCategories}>
         Explain Categories
       </button>
 
-      {/* Modal */}
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
@@ -186,31 +197,13 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
             <button onClick={handleModalSubmit}>Let's Go</button>
+            {signInError && <p className="error-message">{signInError}</p>}
             <button className="modal-close-button" onClick={toggleModal}>
               Close
             </button>
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        .explain-categories-button {
-          position: absolute;
-          top: 20px; /* Adjust the position from the top */
-          right: 20px; /* Adjust the position from the right */
-          padding: 10px 15px;
-          background-color: #007bff; /* Button background color */
-          color: white; /* Text color */
-          border: none;
-          border-radius: 5px; /* Rounded corners */
-          cursor: pointer;
-          font-size: 16px; /* Font size */
-        }
-
-        .explain-categories-button:hover {
-          background-color: #0056b3; /* Darker shade on hover */
-        }
-      `}</style>
     </div>
   );
 };

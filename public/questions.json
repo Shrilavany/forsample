@@ -1,0 +1,106 @@
+{
+  "questions": [
+    {
+      "question": "Can you show the real-time trend of water temperature in the cooling tower (inlet vs. outlet) over the last 24 hours?",
+      "answer": "The real-time trend shows the inlet temperature as 29°C and outlet as 25°C with slight variations.",
+      "type": "chart",
+      "data": {
+        "values": [
+          { "time": "00:00", "inlet": 29, "outlet": 25 },
+          { "time": "06:00", "inlet": 28, "outlet": 24 },
+          { "time": "12:00", "inlet": 30, "outlet": 26 },
+          { "time": "18:00", "inlet": 29, "outlet": 25 },
+          { "time": "23:59", "inlet": 28, "outlet": 24 }
+        ]
+      }
+    },
+    {
+      "question": "What is the distribution of energy consumption by each component in the cooling tower (fans, pumps, chemical dosing system) for the past month?",
+      "answer": "Energy consumption distribution: Fans - 50%, Pumps - 30%, Chemical Dosing System - 20%.",
+      "type": "chart",
+      "data": {
+        "values": [
+          { "component": "Fans", "percentage": 50 },
+          { "component": "Pumps", "percentage": 30 },
+          { "component": "Chemical Dosing System", "percentage": 20 }
+        ]
+      }
+    },
+    {
+      "question": "How has the water usage in the cooling tower changed over the past week?",
+      "answer": "Water usage fluctuated, peaking at 1000 gallons on Wednesday and averaging around 750 gallons daily.",
+      "type": "chart",
+      "data": {
+        "values": [
+          { "day": "Monday", "usage": 700 },
+          { "day": "Tuesday", "usage": 750 },
+          { "day": "Wednesday", "usage": 1000 },
+          { "day": "Thursday", "usage": 800 },
+          { "day": "Friday", "usage": 720 },
+          { "day": "Saturday", "usage": 730 },
+          { "day": "Sunday", "usage": 680 }
+        ]
+      }
+    },
+    {
+      "question": "What is the weekly average pH level in the cooling tower?",
+      "answer": "The weekly average pH level is 7.0, which is optimal for cooling tower operations.",
+      "type": "chart",
+      "data": {
+        "values": [
+          { "day": "Monday", "pH": 6.9 },
+          { "day": "Tuesday", "pH": 7.1 },
+          { "day": "Wednesday", "pH": 7.0 },
+          { "day": "Thursday", "pH": 6.8 },
+          { "day": "Friday", "pH": 7.1 },
+          { "day": "Saturday", "pH": 7.2 },
+          { "day": "Sunday", "pH": 7.0 }
+        ]
+      }
+    },
+
+    {
+      "question": "What are the optimal operating conditions for the cooling tower?",
+      "answer": "Optimal conditions: Inlet temperature at 30°C, Outlet temperature at 25°C, and pH level between 6.5 and 7.5."
+    },
+    {
+      "question": "How often should the cooling tower be inspected for maintenance?",
+      "answer": "The cooling tower should be inspected bi-weekly for maintenance to ensure optimal performance."
+    },
+    {
+      "question": "What is the recommended biocide dosage for maintaining water quality in the cooling tower?",
+      "answer": "The recommended biocide dosage is 1.5 ppm based on water volume and system requirements."
+    },
+
+    {
+      "question": "Can you provide the layout of the cooling tower system?",
+      "answer": "Here is the layout of the cooling tower system.",
+      "type": "image",
+      "imagePath": "https://i.pinimg.com/564x/45/00/44/45004415c1faa9d9d16fdcdcb87d6743.jpg"
+    },
+    {
+      "question": "What does the pump configuration look like for the cooling tower?",
+      "answer": "This is the configuration diagram for the cooling tower pump.",
+      "type": "image",
+      "imagePath": "/images/pump_configuration.jpg"
+    },
+    {
+      "question": "Could you show the layout for chemical dosing in the cooling tower?",
+      "answer": "This image shows the chemical dosing layout for the cooling tower.",
+      "type": "image",
+      "imagePath": "/images/chemical_dosing.jpg"
+    },
+    {
+      "question": "What is the schematic for the cooling tower control panel?",
+      "answer": "This schematic provides an overview of the control panel setup.",
+      "type": "image",
+      "imagePath": "/images/control_panel.jpg"
+    },
+    {
+      "question": "Can you show the water flow diagram for the cooling tower?",
+      "answer": "Here is the water flow diagram in the cooling tower system.",
+      "type": "image",
+      "imagePath": "/images/water_flow.jpg"
+    }
+  ]
+}

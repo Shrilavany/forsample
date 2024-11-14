@@ -1,13 +1,56 @@
-import React from "react";
-import "./AboutUs.css"; // Import the updated CSS file
+// About.js
+import React, { useState } from "react";
+import "./AboutUs.css";
 
-const About = () => {
+const About = ({ userType }) => {
+  const [speechSynthesisInstance, setSpeechSynthesisInstance] = useState(null);
+
+  const getCategoryContent = () => {
+    switch (userType) {
+      case "Engineering Team":
+        return "Our Engineering Team category allows engineers to monitor and adjust cooling tower operations, troubleshoot issues, and ensure optimal performance.";
+      case "Supervisors/Plant Managers":
+        return "Supervisors and Plant Managers can access high-level insights on operational efficiency and maintenance schedules, helping them make informed decisions for overall plant productivity.";
+      case "Environmental & Safety Officers":
+        return "Environmental & Safety Officers can monitor environmental compliance and safety standards, ensuring that cooling tower operations meet regulatory guidelines.";
+      case "IT Automation Specialists":
+        return "IT Automation Specialists can integrate our application with other systems, ensuring seamless data flow and automation across the facility.";
+      default:
+        return "Our chatbot serves various roles within your organization, enhancing efficiency, safety, and compliance through advanced automation technology.";
+    }
+  };
+
+  const getAllTextToRead = () => {
+    return `
+      Welcome to our Cooling Tower Automation application, where we enhance operational efficiency using advanced technology. 
+      Our chatbot assists users with quick, accurate responses to inquiries, empowering teams with real-time data and insights. 
+      Our Product Range includes Induced Draft FRP Cooling Towers, Square & Round Shaped Cooling Towers, Fanless Filles Cooling Towers, 
+      Modular & Cross Flow Cooling Towers, Dry Cooling Towers & Timber Cooling Towers, Heat Exchangers & FRP Tanks, 
+      and Cooling Tower Spares & Turnkey Projects. 
+      ${getCategoryContent()}
+    `;
+  };
+
+  const startReading = () => {
+    const utterance = new SpeechSynthesisUtterance(getAllTextToRead());
+    utterance.lang = "en-US";
+    setSpeechSynthesisInstance(utterance);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const stopReading = () => {
+    if (speechSynthesisInstance) {
+      window.speechSynthesis.cancel();
+      setSpeechSynthesisInstance(null);
+    }
+  };
+
   return (
     <div className="aboutContainer">
       <div className="leftSection">
         <div className="imageContainer">
           <img
-            src="https://i.pinimg.com/originals/15/fa/6e/15fa6e6c9c2f0b4cf42dbb90a4852544.gif"
+            src="https://instrumentationtools.com/wp-content/uploads/2017/02/instrumentationtools.com_plc-and-scada-animation.gif"
             alt="Cooling Tower Automation"
             className="gifImage"
           />
@@ -36,13 +79,16 @@ const About = () => {
           </ul>
         </div>
 
-        <p className="text">
-          Our chatbot serves as a reliable assistant for operators, engineers,
-          and supervisors, providing insights into operational performance,
-          troubleshooting, and technical support. By streamlining communication,
-          we aim to improve decision-making and productivity in industrial
-          environments.
-        </p>
+        <p className="text">{getCategoryContent()}</p>
+
+        <div className="voiceControl">
+          <button className="voiceButton startRead" onClick={startReading}>
+            Start Read
+          </button>
+          <button className="voiceButton stopRead" onClick={stopReading}>
+            Stop Read
+          </button>
+        </div>
       </div>
     </div>
   );

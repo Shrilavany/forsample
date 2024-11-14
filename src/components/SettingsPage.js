@@ -1,301 +1,203 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SettingsPage.css";
+import { useNavigate } from "react-router-dom";
 
-// Styles can be added with CSS or styled-components for a cleaner layout
 const SettingsPage = () => {
-  // Step 1: Temperature and Humidity Thresholds
-  const [temperatureThreshold, setTemperatureThreshold] = useState(25);
-  const [humidityThreshold, setHumidityThreshold] = useState(60);
+  const [activeTab, setActiveTab] = useState("security");
+  const [theme, setTheme] = useState("light");
+  const [showAlert, setShowAlert] = useState(false);
+  const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
+  const [isChatActive, setIsChatActive] = useState(false); // State for chat activation
+  const navigate = useNavigate();
 
-  // Step 2: Operational Modes
-  const [mode, setMode] = useState("Automatic");
-  const [emergencyOverride, setEmergencyOverride] = useState(false);
+  // Toggle function for 2FA with alert
+  const handleTwoFactorToggle = () => {
+    setIsTwoFactorEnabled((prev) => !prev);
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000); // Display alert for 3 seconds
+  };
 
-  // Step 3: Notification Settings
-  const [alertEnabled, setAlertEnabled] = useState(true);
-  const [alertFrequency, setAlertFrequency] = useState("immediate");
-  const [alertChannels, setAlertChannels] = useState({
-    email: true,
-    sms: false,
-  });
+  // Apply theme as a class to the main container
+  useEffect(() => {
+    document.body.className = theme; // Set theme as a body class for global effect
+  }, [theme]);
 
-  // Step 4: Scheduling Options
-  const [operationSchedule, setOperationSchedule] = useState("09:00 - 17:00");
-  const [maintenanceSchedule, setMaintenanceSchedule] = useState("Monthly");
-
-  // Step 5: Data Logging and Reports
-  const [dataLoggingEnabled, setDataLoggingEnabled] = useState(true);
-  const [reportFrequency, setReportFrequency] = useState("weekly");
-
-  // Step 6: Security and Access Control
-  const [sessionTimeout, setSessionTimeout] = useState(30);
-
-  // Step 7: Chatbot Behavior Settings
-  const [chatbotLanguage, setChatbotLanguage] = useState("English");
-  const [chatbotTone, setChatbotTone] = useState("Formal");
-
-  // Step 8: Diagnostic and Troubleshooting Tools
-  const [diagnosticsMode, setDiagnosticsMode] = useState(false);
-
-  // Step 9: Energy Efficiency Settings
-  const [energySavingMode, setEnergySavingMode] = useState(true);
-  const [efficiencyTarget, setEfficiencyTarget] = useState(80);
-
-  // Step 10: Environment Integration
-  const [apiKey, setApiKey] = useState("");
-
-  const handleSubmit = () => {
-    // Handle save settings to backend
-    const settings = {
-      temperatureThreshold,
-      humidityThreshold,
-      mode,
-      emergencyOverride,
-      alertEnabled,
-      alertFrequency,
-      alertChannels,
-      operationSchedule,
-      maintenanceSchedule,
-      dataLoggingEnabled,
-      reportFrequency,
-      sessionTimeout,
-      chatbotLanguage,
-      chatbotTone,
-      diagnosticsMode,
-      energySavingMode,
-      efficiencyTarget,
-      apiKey,
-    };
-    console.log("Settings saved:", settings);
+  // Function to handle the start of chat support
+  const handleStartChatSupport = () => {
+    setIsChatActive(true);
+    navigate("/support-chatbot"); // Navigate to SupportChatbotPage
   };
 
   return (
-    <div className="settings-page">
-      <h1>Cooling Tower Automation Settings</h1>
+    <div className={`settings-page ${theme}`}>
+      {/* Background */}
+      <div className="background-overlay"></div>
 
-      {/* Temperature and Humidity Thresholds */}
-      <section>
-        <h2>Temperature and Humidity Thresholds</h2>
-        <label>
-          Temperature Threshold:
-          <input
-            type="number"
-            value={temperatureThreshold}
-            onChange={(e) => setTemperatureThreshold(e.target.value)}
-          />
-        </label>
-        <label>
-          Humidity Threshold:
-          <input
-            type="number"
-            value={humidityThreshold}
-            onChange={(e) => setHumidityThreshold(e.target.value)}
-          />
-        </label>
-      </section>
-
-      {/* Operational Modes */}
-      <section>
-        <h2>Operational Modes</h2>
-        <label>
-          Mode:
-          <select value={mode} onChange={(e) => setMode(e.target.value)}>
-            <option value="Automatic">Automatic</option>
-            <option value="Manual">Manual</option>
-          </select>
-        </label>
-        <label>
-          Emergency Override:
-          <input
-            type="checkbox"
-            checked={emergencyOverride}
-            onChange={(e) => setEmergencyOverride(e.target.checked)}
-          />
-        </label>
-      </section>
-
-      {/* Notification Settings */}
-      <section>
-        <h2>Notification Settings</h2>
-        <label>
-          Enable Alerts:
-          <input
-            type="checkbox"
-            checked={alertEnabled}
-            onChange={(e) => setAlertEnabled(e.target.checked)}
-          />
-        </label>
-        <label>
-          Alert Frequency:
-          <select
-            value={alertFrequency}
-            onChange={(e) => setAlertFrequency(e.target.value)}
-          >
-            <option value="immediate">Immediate</option>
-            <option value="hourly">Hourly</option>
-            <option value="daily">Daily</option>
-          </select>
-        </label>
-        <label>
-          Alert Channels:
-          <div>
-            <label>
-              Email:
-              <input
-                type="checkbox"
-                checked={alertChannels.email}
-                onChange={(e) =>
-                  setAlertChannels({
-                    ...alertChannels,
-                    email: e.target.checked,
-                  })
-                }
-              />
-            </label>
-            <label>
-              SMS:
-              <input
-                type="checkbox"
-                checked={alertChannels.sms}
-                onChange={(e) =>
-                  setAlertChannels({ ...alertChannels, sms: e.target.checked })
-                }
-              />
-            </label>
+      {/* Main content container */}
+      <div className="settings-container">
+        {/* Header and Tabs */}
+        <div className="settings-header-and-tabs">
+          {/* Header */}
+          <div className="settings-header">
+            <h1 className="settings-title">Settings</h1>
+            <button className="logout-button">Logout</button>
           </div>
-        </label>
-      </section>
 
-      {/* Scheduling Options */}
-      <section>
-        <h2>Scheduling Options</h2>
-        <label>
-          Operation Schedule:
-          <input
-            type="text"
-            value={operationSchedule}
-            onChange={(e) => setOperationSchedule(e.target.value)}
-          />
-        </label>
-        <label>
-          Maintenance Schedule:
-          <input
-            type="text"
-            value={maintenanceSchedule}
-            onChange={(e) => setMaintenanceSchedule(e.target.value)}
-          />
-        </label>
-      </section>
+          {/* Tabs */}
+          <div className="tabs-container">
+            <div className="flex">
+              {["security", "preferences", "notifications", "support"].map(
+                (tab) => (
+                  <button
+                    key={tab}
+                    className={`tab-button ${
+                      activeTab === tab
+                        ? "tab-button-active"
+                        : "tab-button-inactive"
+                    }`}
+                    onClick={() => setActiveTab(tab)}
+                  >
+                    {tab}
+                  </button>
+                )
+              )}
+            </div>
+          </div>
+        </div>
 
-      {/* Data Logging and Reports */}
-      <section>
-        <h2>Data Logging and Reports</h2>
-        <label>
-          Enable Data Logging:
-          <input
-            type="checkbox"
-            checked={dataLoggingEnabled}
-            onChange={(e) => setDataLoggingEnabled(e.target.checked)}
-          />
-        </label>
-        <label>
-          Report Frequency:
-          <select
-            value={reportFrequency}
-            onChange={(e) => setReportFrequency(e.target.value)}
-          >
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-          </select>
-        </label>
-      </section>
+        {/* Content */}
+        <div className="content-card">
+          {activeTab === "security" && (
+            <div>
+              <h2 className="section-title">Password & Security</h2>
+              <div className="form-group">
+                <button
+                  className="button-primary compact"
+                  onClick={() => navigate("/change-password")}
+                >
+                  Change Password
+                </button>
+                <div className="permission-item">
+                  <div>
+                    <h3 className="notification-title">
+                      Two-factor Authentication
+                    </h3>
+                    <p className="notification-description">
+                      Secure your account with 2FA
+                    </p>
+                  </div>
+                  <label className="toggle-switch">
+                    <input
+                      type="checkbox"
+                      className="toggle-input"
+                      checked={isTwoFactorEnabled}
+                      onChange={handleTwoFactorToggle}
+                    />
+                    <div className="toggle-slider"></div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          )}
 
-      {/* Security and Access Control */}
-      <section>
-        <h2>Security and Access Control</h2>
-        <label>
-          Session Timeout (minutes):
-          <input
-            type="number"
-            value={sessionTimeout}
-            onChange={(e) => setSessionTimeout(e.target.value)}
-          />
-        </label>
-      </section>
+          {activeTab === "preferences" && (
+            <div>
+              <h2 className="section-title">Preferences</h2>
+              <div className="form-group">
+                <label className="notification-title block mb-2">Theme</label>
+                <select
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value)}
+                  className="input-select"
+                >
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                  <option value="system">System Default</option>
+                </select>
+              </div>
+              <div>
+                <h3 className="notification-title mb-2">App Permissions</h3>
+                {["Camera", "Microphone", "Storage"].map((permission) => (
+                  <div key={permission} className="permission-item">
+                    <span>{permission}</span>
+                    <label className="toggle-switch">
+                      <input type="checkbox" className="toggle-input" />
+                      <div className="toggle-slider"></div>
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
-      {/* Chatbot Behavior Settings */}
-      <section>
-        <h2>Chatbot Behavior Settings</h2>
-        <label>
-          Chatbot Language:
-          <input
-            type="text"
-            value={chatbotLanguage}
-            onChange={(e) => setChatbotLanguage(e.target.value)}
-          />
-        </label>
-        <label>
-          Chatbot Tone:
-          <select
-            value={chatbotTone}
-            onChange={(e) => setChatbotTone(e.target.value)}
-          >
-            <option value="Formal">Formal</option>
-            <option value="Friendly">Friendly</option>
-          </select>
-        </label>
-      </section>
+          {activeTab === "notifications" && (
+            <div>
+              <h2 className="section-title">Notifications</h2>
+              <div className="form-group">
+                {["Email", "SMS", "In-app"].map((type) => (
+                  <div key={type} className="notification-item">
+                    <div className="notification-text">
+                      <h3 className="notification-title">
+                        {type} Notifications
+                      </h3>
+                      <p className="notification-description">
+                        Receive {type.toLowerCase()} updates and alerts
+                      </p>
+                    </div>
+                    <label className="toggle-switch">
+                      <input type="checkbox" className="toggle-input" />
+                      <div className="toggle-slider"></div>
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
-      {/* Diagnostic and Troubleshooting Tools */}
-      <section>
-        <h2>Diagnostic and Troubleshooting Tools</h2>
-        <label>
-          Diagnostics Mode:
-          <input
-            type="checkbox"
-            checked={diagnosticsMode}
-            onChange={(e) => setDiagnosticsMode(e.target.checked)}
-          />
-        </label>
-      </section>
+          {activeTab === "support" && (
+            <div>
+              <h2 className="section-title">Support</h2>
+              <div className="space-y-6">
+                <div className="form-group">
+                  <h3 className="notification-title">Email Support</h3>
+                  <p className="notification-description">
+                    support@example.com
+                  </p>
+                </div>
+                <div className="form-group">
+                  <h3 className="notification-title">Phone Support</h3>
+                  <p className="notification-description">1-800-123-4567</p>
+                </div>
+                <button
+                  className="button-primary compact"
+                  onClick={handleStartChatSupport}
+                >
+                  Start Chat Support
+                </button>
+              </div>
+              <div className="form-group">
+                <h3 className="notification-title">Feedback & Suggestions</h3>
+                <textarea
+                  className="textarea-feedback"
+                  placeholder="Share your feedback or report issues..."
+                />
+                <button className="button-primary compact">
+                  Submit Feedback
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
 
-      {/* Energy Efficiency Settings */}
-      <section>
-        <h2>Energy Efficiency Settings</h2>
-        <label>
-          Energy Saving Mode:
-          <input
-            type="checkbox"
-            checked={energySavingMode}
-            onChange={(e) => setEnergySavingMode(e.target.checked)}
-          />
-        </label>
-        <label>
-          Efficiency Target (%):
-          <input
-            type="number"
-            value={efficiencyTarget}
-            onChange={(e) => setEfficiencyTarget(e.target.value)}
-          />
-        </label>
-      </section>
-
-      {/* Environment Integration */}
-      <section>
-        <h2>Environment Integration</h2>
-        <label>
-          API Key:
-          <input
-            type="text"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-          />
-        </label>
-      </section>
-
-      {/* Submit Button */}
-      <button onClick={handleSubmit}>Save Settings</button>
+        {/* Alert Message for 2FA */}
+        {showAlert && (
+          <div className="alert-box">
+            {isTwoFactorEnabled
+              ? "Two-factor authentication has been enabled for your account."
+              : "Two-factor authentication has been disabled for your account."}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

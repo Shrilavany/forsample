@@ -5,8 +5,11 @@ import Categories from "./components/Categories";
 import Chatbot from "./components/Chatbot";
 import Login from "./components/Login"; // Import for Login component
 import Profile from "./components/Profile"; // Import for Profile component
-import SettingsPage from "./components/SettingsPage"; // Import for Profile component
-import AboutUs from "./components/AboutUs"; // Import for Profile component
+import SettingsPage from "./components/SettingsPage"; // Import for SettingsPage component
+import AboutUs from "./components/AboutUs"; // Import for AboutUs component
+import ChangePassword from "./components/ChangePassword"; // Corrected import path
+import SupportChatbotPage from "./components/SupportChatbotPage"; // Corrected import path
+
 import "./App.css";
 
 function App() {
@@ -23,11 +26,14 @@ function App() {
           {/* Navigates to ChatInput */}
           <Route path="/chat-input" element={<Chatbot />} />
           {/* Navigates to Profile page */}
-          <Route path="/profile" element={<Profile />} /> {/* Add this line */}
-          {/* Navigates to Profile page */}
+          <Route path="/profile" element={<Profile />} />
+          {/* Navigates to Settings page */}
           <Route path="/settings" element={<SettingsPage />} />
           {/* Navigates to AboutUs page */}
           <Route path="/about" element={<AboutUs />} />
+          {/* Navigates to ChangePassword page */}
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/support-chatbot" element={<SupportChatbotPage />} />
         </Routes>
       </div>
     </Router>

@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "name": "Nivetha",
+        "date_of_birth": "2003-09-26",
+        "education": "Bachelor of Engineering in Computer Science",
+        "native_place": "Thanjavur",
+        "country": "India",
+        "state": "Tamil Nadu",
+        "mother_tongue": "Tamil"
+    }
+]

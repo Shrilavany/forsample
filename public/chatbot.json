@@ -1,0 +1,16 @@
+{
+  "predefinedQuestions": [
+    {
+      "question": "How to use this application?",
+      "response": "You can start by signing up and exploring the app's features."
+    },
+    {
+      "question": "What features are available?",
+      "response": "The app offers chat support, account management, and notifications."
+    },
+    {
+      "question": "How to reset my password?",
+      "response": "You can reset your password from the settings page."
+    }
+  ]
+}
